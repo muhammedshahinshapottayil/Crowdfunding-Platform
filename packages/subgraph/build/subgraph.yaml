@@ -1,0 +1,35 @@
+specVersion: 0.0.4
+description: Greetings
+repository: https://github.com/scaffold-eth/se-2/packages/subgraph/
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: KickStarter
+    network: sepolia
+    source:
+      abi: KickStarter
+      address: "0x566D659E18B683B467A2e6534880232d46E00E00"
+      startBlock: 5565880
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Proposal
+        - Comment
+      abis:
+        - name: KickStarter
+          file: KickStarter\abis\localhost_KickStarter.json
+      eventHandlers:
+        - event: Evt__Contract__Deployed(indexed address,indexed
+            address,string,string,uint256,uint256)
+          handler: handleProposalCreate
+        - event: Evt__Comments(indexed address,indexed address,string,uint256)
+          handler: handleCommentsPost
+        - event: Evt__Contract__Update__Deployed(indexed address,indexed
+            address,string,string,uint256)
+          handler: handleUpdateProposal
+        - event: Evt__Renewed(indexed address,indexed address,uint256)
+          handler: handleRenewContract
+      file: KickStarter\KickStarter.wasm

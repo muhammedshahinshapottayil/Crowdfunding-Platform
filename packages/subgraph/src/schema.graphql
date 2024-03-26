@@ -1,0 +1,17 @@
+type Proposal @entity {
+  id: ID!
+  account: Bytes!
+  contractAddress: Bytes!
+  name: String!
+  idea: String!
+  budget: BigInt!
+  expiryDate: BigInt!
+}
+
+type Comment @entity {
+  id: ID!
+  account: Bytes!
+  contractAddress: Bytes!
+  comment: String!
+  date: BigInt!
+}
