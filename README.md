@@ -27,5 +27,5 @@ Future Updates:
 
 Backend and Contract Setup:
 
-The necessary arrangements for future UI/UX feature updates have already been implemented in the backend and smart contract. 
+The necessary arrangements for future UI/UX feature updates have already been implemented in the backend or smart contract. 
 -------------------------------------
