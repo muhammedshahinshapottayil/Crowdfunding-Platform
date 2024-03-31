@@ -18,6 +18,7 @@ dataSources:
       entities:
         - Proposal
         - Comment
+        - Donation
       abis:
         - name: KickStarter
           file: ./abis/localhost_KickStarter.json
@@ -32,4 +33,9 @@ dataSources:
           handler: handleUpdateProposal
         - event: Evt__Renewed(indexed address,indexed address,uint256)
           handler: handleRenewContract
+        - event: Evt__Donation(indexed address,indexed address,indexed uint256,uint256)
+          handler: handleDonation
+        - event: Evt__Fund__Withdrawed(indexed address,indexed address)
+          handler: handleWithdrawal
+
       file: ./src/mapping.ts

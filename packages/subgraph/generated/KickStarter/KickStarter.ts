@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt,
+  BigInt
 } from "@graphprotocol/graph-ts";
 
 export class Evt__Comments extends ethereum.Event {
@@ -295,7 +295,7 @@ export class KickStarter extends ethereum.SmartContract {
     let result = super.call(
       "contractBalance",
       "contractBalance():(uint256)",
-      [],
+      []
     );
 
     return result[0].toBigInt();
@@ -305,7 +305,7 @@ export class KickStarter extends ethereum.SmartContract {
     let result = super.tryCall(
       "contractBalance",
       "contractBalance():(uint256)",
-      [],
+      []
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -316,7 +316,7 @@ export class KickStarter extends ethereum.SmartContract {
 
   fundRaised(contractAddress: Address): BigInt {
     let result = super.call("fundRaised", "fundRaised(address):(uint256)", [
-      ethereum.Value.fromAddress(contractAddress),
+      ethereum.Value.fromAddress(contractAddress)
     ]);
 
     return result[0].toBigInt();
@@ -324,7 +324,7 @@ export class KickStarter extends ethereum.SmartContract {
 
   try_fundRaised(contractAddress: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall("fundRaised", "fundRaised(address):(uint256)", [
-      ethereum.Value.fromAddress(contractAddress),
+      ethereum.Value.fromAddress(contractAddress)
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -337,7 +337,7 @@ export class KickStarter extends ethereum.SmartContract {
     let result = super.call(
       "getFundWanted",
       "getFundWanted(address):(uint256)",
-      [ethereum.Value.fromAddress(contractAddress)],
+      [ethereum.Value.fromAddress(contractAddress)]
     );
 
     return result[0].toBigInt();
@@ -347,7 +347,7 @@ export class KickStarter extends ethereum.SmartContract {
     let result = super.tryCall(
       "getFundWanted",
       "getFundWanted(address):(uint256)",
-      [ethereum.Value.fromAddress(contractAddress)],
+      [ethereum.Value.fromAddress(contractAddress)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -357,26 +357,26 @@ export class KickStarter extends ethereum.SmartContract {
   }
 
   getProposedIdea(
-    contractAddress: Address,
+    contractAddress: Address
   ): KickStarter__getProposedIdeaResultValue0Struct {
     let result = super.call(
       "getProposedIdea",
       "getProposedIdea(address):((string,string,string,uint256,uint256,uint256))",
-      [ethereum.Value.fromAddress(contractAddress)],
+      [ethereum.Value.fromAddress(contractAddress)]
     );
 
     return changetype<KickStarter__getProposedIdeaResultValue0Struct>(
-      result[0].toTuple(),
+      result[0].toTuple()
     );
   }
 
   try_getProposedIdea(
-    contractAddress: Address,
+    contractAddress: Address
   ): ethereum.CallResult<KickStarter__getProposedIdeaResultValue0Struct> {
     let result = super.tryCall(
       "getProposedIdea",
       "getProposedIdea(address):((string,string,string,uint256,uint256,uint256))",
-      [ethereum.Value.fromAddress(contractAddress)],
+      [ethereum.Value.fromAddress(contractAddress)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -384,8 +384,8 @@ export class KickStarter extends ethereum.SmartContract {
     let value = result.value;
     return ethereum.CallResult.fromValue(
       changetype<KickStarter__getProposedIdeaResultValue0Struct>(
-        value[0].toTuple(),
-      ),
+        value[0].toTuple()
+      )
     );
   }
 

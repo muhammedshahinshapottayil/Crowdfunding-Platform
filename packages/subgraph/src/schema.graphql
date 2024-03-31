@@ -8,6 +8,15 @@ type Proposal @entity {
   expiryDate: BigInt!
 }
 
+type Donation @entity {
+  id: ID!
+  account: Bytes!
+  contractAddress: Bytes!
+  budget: BigInt!
+  status: Boolean!
+  expiryDate: BigInt!
+}
+
 type Comment @entity {
   id: ID!
   account: Bytes!
