@@ -60,10 +60,16 @@ export function handleDonation(event: Evt__Donation) {
   const id = genId(event.params.donatorAddress, event.params.contractAddress);
   let donation;
   donation = Donation.load(id);
-  if (!donation) donation = new Donation(id);
+  if (!donation) {
+    donation = new Donation(id);
+    donation!.budget = event.params.amount;
+  } else {
+    donation!.budget = new BigInt(
+      Number(donation!.budget) + Number(event.params.amount)
+    );
+  }
   donation!.account = event.params.donatorAddress;
   donation!.contractAddress = event.params.contractAddress;
-  donation!.budget = event.params.amount;
   donation!.expiryDate = event.params.timestamp;
   donation!.status = true;
   donation.save();
