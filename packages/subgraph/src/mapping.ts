@@ -5,6 +5,7 @@ import {
   Evt__Contract__Update__Deployed,
   Evt__Renewed,
   Evt__Donation,
+  Evt__Donation__Withdraw,
   Evt__Fund__Withdrawed,
 } from "../generated/KickStarter/KickStarter";
 import { Proposal, Comment, Donation } from "../generated/schema";
@@ -43,6 +44,7 @@ export function handleProposalCreate(event: Evt__Contract__Deployed): void {
   proposal.expiryDate = event.params.expiryTime;
   proposal.idea = event.params.idea;
   proposal.name = event.params.proposalName;
+  proposal.status = true;
   proposal.save();
 }
 
@@ -75,13 +77,23 @@ export function handleDonation(event: Evt__Donation) {
   donation.save();
 }
 
-export function handleWithdrawal(event: Evt__Fund__Withdrawed) {
-  const id = genId(event.params.account, event.params.contractAddress);
+export function handleWithdrawal(event: Evt__Donation__Withdraw) {
+  const id = genId(event.params.account, event.params.contractAdddress);
   const donation = Donation.load(id);
   if (donation) {
     donation!.budget = new BigInt(0);
     donation!.expiryDate = event.block.timestamp;
     donation!.status = false;
+    donation.save();
+  }
+}
+
+export function handleFundWithdrawal(event: Evt__Fund__Withdrawed) {
+  const donation = Donation.load(
+    genId(event.params.account, event.params.contractAddress)
+  );
+  if (donation) {
+    donation.status = false;
     donation.save();
   }
 }

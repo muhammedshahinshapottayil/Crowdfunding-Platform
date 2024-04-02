@@ -6,6 +6,7 @@ type Proposal @entity {
   idea: String!
   budget: BigInt!
   expiryDate: BigInt!
+  status: Boolean!
 }
 
 type Donation @entity {

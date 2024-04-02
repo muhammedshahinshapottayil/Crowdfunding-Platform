@@ -127,6 +127,19 @@ export class Proposal extends Entity {
   set expiryDate(value: BigInt) {
     this.set("expiryDate", Value.fromBigInt(value));
   }
+
+  get status(): boolean {
+    let value = this.get("status");
+    if (!value || value.kind == ValueKind.NULL) {
+      return false;
+    } else {
+      return value.toBoolean();
+    }
+  }
+
+  set status(value: boolean) {
+    this.set("status", Value.fromBoolean(value));
+  }
 }
 
 export class Donation extends Entity {

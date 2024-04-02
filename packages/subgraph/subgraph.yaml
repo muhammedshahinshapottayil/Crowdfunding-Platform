@@ -35,7 +35,9 @@ dataSources:
           handler: handleRenewContract
         - event: Evt__Donation(indexed address,indexed address,indexed uint256,uint256)
           handler: handleDonation
-        - event: Evt__Fund__Withdrawed(indexed address,indexed address)
+        - event: Evt__Donation__Withdraw(indexed address,indexed address,uint256)
           handler: handleWithdrawal
+        - event: Evt__Fund__Withdrawed(indexed address,indexed address)
+          handler: handleFundWithdrawal
 
       file: ./src/mapping.ts
