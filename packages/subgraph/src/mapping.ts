@@ -89,12 +89,12 @@ export function handleWithdrawal(event: Evt__Donation__Withdraw) {
 }
 
 export function handleFundWithdrawal(event: Evt__Fund__Withdrawed) {
-  const donation = Donation.load(
+  const proposal = Proposal.load(
     genId(event.params.account, event.params.contractAddress)
   );
-  if (donation) {
-    donation.status = false;
-    donation.save();
+  if (proposal) {
+    proposal.status = false;
+    proposal.save();
   }
 }
 

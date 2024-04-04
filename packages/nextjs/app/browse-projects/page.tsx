@@ -9,7 +9,7 @@ const Page = () => {
   const PROPOSAL_GRAPHQL = `
   query MyQuery($currentTime: BigInt!) {
     proposals(
-      where: { expiryDate_gt: $currentTime }
+      where: { expiryDate_gt: $currentTime, status:true }
       orderBy: expiryDate
       orderDirection: desc
     ) {
